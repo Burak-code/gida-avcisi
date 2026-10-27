@@ -6,587 +6,637 @@
     <title>GıdaAvcısı | Gıda ve Öğrenme</title>
     <meta name="description" content="Gıda alanında öğrenmeye yönelik içerikler, ders notları ve bilgilendirici paylaşımlar." />
     <meta name="theme-color" content="#121212" />
-    <link rel="icon" href="images/foto.png" type="image/x-icon" />
+    <link rel="icon" href="foto.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
 
-body {
-    background-color: #121212;
-    color: #f0f0f0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
 
-/* ===== EMOJİ ARKA PLAN ===== */
-body::before {
-    content: "🍕🍔🌮🥗🍣🍱🥘🍝🍜🍲🥪🥙🌯🥗🍟🍕🌭🥓🥩🍗🍖🧀🥚🍳🥞🧇🥐🥯🍞🥖🥨🧀🥓🍔🌭🍕🥪🥙🧆🌮🌯🥗🥘🍝🍜🍲🍛🍣🍱🥟🍤🍙🍚🍘🍥🥠🥮🍢🍡🍧🍨🍦🥧🧁🍰🎂🍮🍭🍬🍫🍿🍩🍪🌰🥜🍯🥛🍼🧃🧉🧊🥤🧋🍵☕️🥃🍷🍸🍹🍺🍻🥂🍾🍇🍈🍉🍊🍋🍌🍍🥭🍎🍏🍐🍑🍒🍓🫐🥝🍅🫒🥥🥑🍆🥔🥕🌽🌶️🫑🥒🥬🥦🧄🧅🍄🥜🌰🍞🥐🥖🫓🥨🧀🥚🍳🧈🥞🧇🥓🥩🍗🍖🦴🌭🍔🍟🍕🥪🥙🧆🌮🌯🥗🥘🍝🍫🍬🍭🍮🍯🍼🥛☕️🍵🥤🧃🧋";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 60px;
-    line-height: 1.8;
-    letter-spacing: 20px;
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-    white-space: pre-wrap;
-    word-break: break-all;
-    padding: 40px;
-}
+        /* ===== EMOJİ ARKA PLAN (performans için basitleştirildi) ===== */
+        body::before {
+            content: "🍕🍔🌮🥗🍣🍱🥘🍝🍜🍲🥪🥙🌯🍟🌭🥓🥩🍗🍖🧀🥚🍳🥞🧇🥐🥯🍞🥖🥨🍔🌭🍕🥪🥙🧆🌮🌯🥗🥘🍝🍜🍲🍛🍣🍱🥟🍤🍙🍚🍘🍥🥠🥮🍢🍡🍧🍨🍦🥧🧁🍰🎂🍮🍭🍬🍫🍿🍩🍪🌰🥜🍯🥛🍼🧃🧉🧊🥤🧋🍵☕️🥃🍷🍸🍹🍺🍻🥂🍾🍇🍈🍉🍊🍋🍌🍍🥭🍎🍏🍐🍑🍒🍓🫐🥝🍅🫒🥥🥑🍆🥔🥕🌽🌶️🫑🥒🥬🥦🧄🧅🍄🥜🌰🍞🥐🥖🫓🥨🧀🥚🍳🧈🥞🧇🥓🥩🍗🍖🦴🌭🍔🍟🍕🥪🥙🧆🌮🌯🥗🥘🍝";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 60px;
+            line-height: 1.8;
+            letter-spacing: 20px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            white-space: pre-wrap;
+            word-break: break-all;
+            padding: 40px;
+            /* Performans: arka plan emoji katmanı sadece bir kez boyanır */
+            content-visibility: auto;
+            contain: strict;
+        }
 
-/* ===== AYDINLIK TEMA ===== */
-body.light-mode {
-    background-color: #f5f7fa;
-    color: #1e1e2a;
-}
-body.light-mode::before {
-    opacity: 0.04;
-}
-body.light-mode .navbar {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-}
-body.light-mode .nav-links a {
-    color: #1e1e2a;
-}
-body.light-mode .nav-links a:hover {
-    color: #a855f7;
-}
-body.light-mode .nav-links a.active {
-    background: #a855f7;
-    color: #fff;
-}
-body.light-mode .card,
-body.light-mode .highlight-box,
-body.light-mode .contact-card,
-body.light-mode .sponsor-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: none;
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
-    color: #1e1e2a;
-}
-body.light-mode .card img,
-body.light-mode .sponsor-card img {
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-body.light-mode .btn-outline {
-    border-color: #2d2d3f;
-    color: #1e1e2a;
-}
-body.light-mode .btn-outline:hover {
-    background: #2d2d3f;
-    color: #f5f7fa;
-}
-body.light-mode .btn-primary {
-    background: #a855f7;
-    color: #fff;
-}
-body.light-mode .btn-primary:hover {
-    background: #7c3aed;
-}
-body.light-mode .footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    color: #3a3a4a;
-}
-body.light-mode .section-title {
-    color: #1e1e2a;
-}
-body.light-mode .highlight-box {
-    background: rgba(168, 85, 247, 0.08);
-    border-left: 4px solid #a855f7;
-}
-body.light-mode .contact-card i {
-    color: #7c3aed;
-}
-body.light-mode .contact-card:hover {
-    background: rgba(168, 85, 247, 0.1);
-    border-color: #a855f7;
-}
+        /* ===== AYDINLIK TEMA ===== */
+        body.light-mode {
+            background-color: #f5f7fa;
+            color: #1e1e2a;
+        }
+        body.light-mode::before {
+            opacity: 0.04;
+        }
+        body.light-mode .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+        }
+        body.light-mode .nav-links a {
+            color: #1e1e2a;
+        }
+        body.light-mode .nav-links a:hover {
+            color: #a855f7;
+        }
+        body.light-mode .nav-links a.active {
+            background: #a855f7;
+            color: #fff;
+        }
+        body.light-mode .card,
+        body.light-mode .highlight-box,
+        body.light-mode .contact-card,
+        body.light-mode .sponsor-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            color: #1e1e2a;
+        }
+        body.light-mode .card img,
+        body.light-mode .sponsor-card img {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        body.light-mode .btn-outline {
+            border-color: #2d2d3f;
+            color: #1e1e2a;
+        }
+        body.light-mode .btn-outline:hover {
+            background: #2d2d3f;
+            color: #f5f7fa;
+        }
+        body.light-mode .btn-primary {
+            background: #a855f7;
+            color: #fff;
+        }
+        body.light-mode .btn-primary:hover {
+            background: #7c3aed;
+        }
+        body.light-mode .footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: #3a3a4a;
+        }
+        body.light-mode .section-title {
+            color: #1e1e2a;
+        }
+        body.light-mode .highlight-box {
+            background: rgba(168, 85, 247, 0.06);
+            border-left: 4px solid #a855f7;
+        }
+        body.light-mode .contact-card i {
+            color: #7c3aed;
+        }
+        body.light-mode .contact-card:hover {
+            background: rgba(168, 85, 247, 0.08);
+            border-color: #a855f7;
+        }
+        body.light-mode .content-note,
+        body.light-mode .product-status {
+            color: #7c3aed;
+        }
 
-/* ===== NAVBAR ===== */
-.navbar {
-    background: rgba(18, 18, 24, 0.75);
-    backdrop-filter: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    padding: 0.8rem 1.5rem;
-    display: flex;
-    justify-content: center;
-}
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(18, 18, 24, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
 
-.navbar-container {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-}
+        .navbar-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
 
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-.logo-circle {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    transition: 0.2s;
-    flex-shrink: 0;
-    background: #2a2a3a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.logo-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.logo-circle:hover {
-    transform: scale(1.02);
-    border-color: #a855f7;
-}
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: 0.2s;
+            flex-shrink: 0;
+            background: #2a2a3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .logo-circle:hover {
+            transform: scale(1.02);
+            border-color: #a855f7;
+        }
 
-.brand-text {
-    font-weight: 700;
-    font-size: 1.3rem;
-    letter-spacing: -0.5px;
-}
-.brand-text span {
-    color: #a855f7;
-}
+        .brand-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+        .brand-text span {
+            color: #a855f7;
+        }
 
-.theme-toggle-btn {
-    background: transparent;
-    border: none;
-    color: #eaeef2;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.2s;
-    padding: 0.3rem 0.5rem;
-}
-.theme-toggle-btn:hover {
-    color: #c084fc;
-    transform: rotate(20deg);
-}
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            color: #eaeef2;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0.3rem 0.5rem;
+        }
+        .theme-toggle-btn:hover {
+            color: #c084fc;
+            transform: rotate(20deg);
+        }
 
-.nav-links {
-    display: flex;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.04);
-    padding: 0.3rem;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-}
-.nav-links a {
-    color: #eaeef2;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.5rem 1.2rem;
-    border-radius: 30px;
-    transition: 0.3s;
-    letter-spacing: 0.3px;
-}
-.nav-links a:hover {
-    color: #c084fc;
-    background: rgba(168, 85, 247, 0.1);
-}
-.nav-links a.active {
-    background: #a855f7;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
-}
-.nav-links a.active:hover {
-    background: #7c3aed;
-}
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.3rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-links a {
+            color: #eaeef2;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            transition: 0.3s;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: #c084fc;
+            background: rgba(168, 85, 247, 0.1);
+        }
+        .nav-links a.active {
+            background: #a855f7;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+        .nav-links a.active:hover {
+            background: #7c3aed;
+        }
 
-/* ===== SAYFA İÇERİKLERİ ===== */
-.page {
-    display: none;
-    padding: 3rem 1.5rem 4rem;
-    width: 100%;
-    animation: fadeSlide 0.35s ease forwards;
-    position: relative;
-    z-index: 1;
-    flex: 1;
-}
-.page.active {
-    display: flex;
-    justify-content: center;
-}
+        /* ===== SAYFA İÇERİKLERİ ===== */
+        .page {
+            display: none;
+            padding: 3rem 1.5rem 4rem;
+            width: 100%;
+            animation: fadeSlide 0.35s ease forwards;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        .page.active {
+            display: flex;
+            justify-content: center;
+        }
 
-.page-content {
-    max-width: 1200px;
-    width: 100%;
-}
+        .page-content {
+            max-width: 1200px;
+            width: 100%;
+        }
 
-@keyframes fadeSlide {
-    0% { opacity: 0.3; transform: translateY(12px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeSlide {
+            0% { opacity: 0.3; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
 
-.section-title {
-    font-size: 2.2rem;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    margin-bottom: 2rem;
-    color: #f0f0f5;
-    border-left: 5px solid #a855f7;
-    padding-left: 1.2rem;
-}
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 2rem;
+            color: #f0f0f5;
+            border-left: 5px solid #a855f7;
+            padding-left: 1.2rem;
+        }
 
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2rem;
-    margin-top: 0.5rem;
-}
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
 
-/* ===== KARTLAR ===== */
-.card {
-    background: rgba(30, 30, 42, 0.6);
-    backdrop-filter: none;
-    border-radius: 24px;
-    padding: 1.2rem 1.2rem 1.6rem;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    transition: 0.2s;
-    display: flex;
-    flex-direction: column;
-}
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #a855f780;
-}
-.card img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 16px;
-    background: #2a2a3a;
-    margin-bottom: 0.8rem;
-}
-.card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0.3rem 0 0.2rem;
-}
-.card p {
-    opacity: 0.8;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    margin: 0.3rem 0 0.8rem;
-}
-.card .price {
-    font-weight: 600;
-    color: #c084fc;
-    font-size: 1.1rem;
-}
+        /* ===== KARTLAR ===== */
+        .card {
+            background: rgba(30, 30, 42, 0.7);
+            border-radius: 24px;
+            padding: 1.2rem 1.2rem 1.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #a855f780;
+        }
+        .card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 16px;
+            background: #2a2a3a;
+            margin-bottom: 0.8rem;
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.3rem 0 0.2rem;
+        }
+        .card p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin: 0.3rem 0 0.8rem;
+        }
+        .card .price {
+            font-weight: 600;
+            color: #c084fc;
+            font-size: 1.1rem;
+        }
 
-/* ===== BUTONLAR ===== */
-.btn {
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 40px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
-    width: fit-content;
-}
-.btn-primary {
-    background: #7c3aed;
-    color: #fff;
-}
-.btn-primary:hover {
-    background: #6d28d9;
-    transform: scale(1.02);
-}
-.btn-outline {
-    background: transparent;
-    border: 1.5px solid #a855f7;
-    color: #eaeef2;
-}
-.btn-outline:hover {
-    background: #a855f7;
-    color: #121212;
-}
+        /* ===== BUTONLAR ===== */
+        .btn {
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            width: fit-content;
+        }
+        .btn-primary {
+            background: #7c3aed;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #6d28d9;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #a855f7;
+            color: #eaeef2;
+        }
+        .btn-outline:hover {
+            background: #a855f7;
+            color: #121212;
+        }
 
-.highlight-box {
-    background: rgba(168, 85, 247, 0.06);
-    border-left: 6px solid #a855f7;
-    padding: 1.6rem 2rem;
-    border-radius: 20px;
-    margin-bottom: 2.2rem;
-    backdrop-filter: blur(2px);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 100%;
-}
+        .highlight-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 6px solid #a855f7;
+            padding: 1.6rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2.2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 100%;
+        }
 
-.sponsor-card {
-    background: rgba(30, 30, 42, 0.5);
-    backdrop-filter: none;
-    border-radius: 24px;
-    padding: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    transition: 0.2s;
-}
-.sponsor-card:hover {
-    border-color: #a855f7;
-    transform: translateY(-4px);
-}
-.sponsor-card img {
-    width: 100%;
-    aspect-ratio: 16/10;
-    object-fit: cover;
-    border-radius: 18px;
-    margin-bottom: 0.8rem;
-    background: #1e1e2a;
-}
+        .sponsor-card {
+            background: rgba(30, 30, 42, 0.6);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            will-change: transform;
+        }
+        .sponsor-card:hover {
+            border-color: #a855f7;
+            transform: translateY(-4px);
+        }
+        .sponsor-card img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 0.8rem;
+            background: #1e1e2a;
+        }
 
-/* ===== İLETİŞİM ===== */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0.5rem;
-}
+        /* ===== İLETİŞİM ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0.5rem;
+        }
 
-.contact-card {
-    background: rgba(30, 30, 42, 0.4);
-    backdrop-filter: none;
-    border-radius: 24px;
-    padding: 2rem 1.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-align: left;
-}
-.contact-card:hover {
-    transform: translateY(-4px);
-    border-color: #a855f7;
-    box-shadow: 0 12px 30px rgba(168, 85, 247, 0.15);
-}
-.contact-card i {
-    font-size: 2.5rem;
-    color: #a855f7;
-    width: 3.5rem;
-    flex-shrink: 0;
-    transition: 0.3s;
-}
-.contact-card:hover i {
-    transform: scale(1.1);
-}
-.contact-card div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-.contact-card strong {
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-.contact-card span {
-    opacity: 0.7;
-    font-size: 0.95rem;
-}
+        .contact-card {
+            background: rgba(30, 30, 42, 0.5);
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            text-align: left;
+            will-change: transform;
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: #a855f7;
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.15);
+        }
+        .contact-card i {
+            font-size: 2.5rem;
+            color: #a855f7;
+            width: 3.5rem;
+            flex-shrink: 0;
+            transition: 0.3s;
+        }
+        .contact-card:hover i {
+            transform: scale(1.1);
+        }
+        .contact-card div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .contact-card strong {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .contact-card span {
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
 
-/* ===== FOOTER ===== */
-.footer {
-    margin-top: auto;
-    text-align: center;
-    padding: 1.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    color: #7a7a8a;
-    font-size: 0.9rem;
-    position: relative;
-    z-index: 1;
-}
+        /* ===== HAKKIMDA SAYFASI ===== */
+        .about-wrapper {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1 1 400px;
+        }
+        .about-logo {
+            flex: 0 0 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .about-logo .logo-circle {
+            width: 160px;
+            height: 160px;
+            border: 4px solid #a855f7;
+            box-shadow: 0 0 24px rgba(168, 85, 247, 0.3);
+            background: #2a2a3a;
+            margin: 0;
+        }
+        .about-logo .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-logo .logo-label {
+            font-size: 0.85rem;
+            color: #a855f7;
+            font-weight: 600;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .about-wrapper {
+                flex-direction: column-reverse;
+                align-items: center;
+                text-align: center;
+            }
+            .about-text {
+                flex: 1 1 auto;
+            }
+            .about-logo {
+                flex: 0 0 auto;
+            }
+            .about-logo .logo-circle {
+                width: 120px;
+                height: 120px;
+            }
+        }
 
-/* ===== MOBİL ===== */
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    .logo-area {
-        width: 100%;
-        justify-content: space-between;
-    }
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        border-radius: 16px;
-        padding: 0.3rem;
-        flex-wrap: wrap;
-    }
-    .nav-links a {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.9rem;
-    }
-    .page {
-        padding: 2rem 1.2rem 3rem;
-    }
-    .card-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .contact-grid {
-        grid-template-columns: 1fr;
-        padding: 0;
-    }
-    .contact-card {
-        padding: 1.5rem;
-    }
-    body::before {
-        font-size: 40px;
-        letter-spacing: 12px;
-        padding: 20px;
-    }
-}
-@media (max-width: 480px) {
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-    .nav-links a {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.7rem;
-    }
-    body::before {
-        font-size: 30px;
-        letter-spacing: 8px;
-        padding: 10px;
-    }
-    .section-title {
-        font-size: 1.6rem;
-    }
-}
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 1.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: #7a7a8a;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
 
-/* ===== GÜNCELLEME: erişilebilirlik ve yeni kartlar ===== */
-a.contact-card {
-    color: inherit;
-    text-decoration: none;
-}
+        /* ===== MOBİL ===== */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .logo-area {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                border-radius: 16px;
+                padding: 0.3rem;
+                flex-wrap: wrap;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.9rem;
+            }
+            .page {
+                padding: 2rem 1.2rem 3rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+            .contact-card {
+                padding: 1.5rem;
+            }
+            body::before {
+                font-size: 40px;
+                letter-spacing: 12px;
+                padding: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links a {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.7rem;
+            }
+            body::before {
+                font-size: 30px;
+                letter-spacing: 8px;
+                padding: 10px;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
 
-.contact-card:focus-visible,
-.nav-links a:focus-visible,
-.btn:focus-visible,
-.theme-toggle-btn:focus-visible,
-.logo-circle:focus-visible {
-    outline: 3px solid #c084fc;
-    outline-offset: 4px;
-}
+        /* ===== ERİŞİLEBİLİRLİK ===== */
+        a.contact-card {
+            color: inherit;
+            text-decoration: none;
+        }
 
-.content-note,
-.product-status {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    margin-top: auto;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid rgba(168, 85, 247, 0.35);
-    border-radius: 999px;
-    color: #c084fc;
-    font-size: 0.82rem;
-    font-weight: 600;
-}
+        .contact-card:focus-visible,
+        .nav-links a:focus-visible,
+        .btn:focus-visible,
+        .theme-toggle-btn:focus-visible,
+        .logo-circle:focus-visible {
+            outline: 3px solid #c084fc;
+            outline-offset: 4px;
+        }
 
-.card .content-note {
-    margin-top: 0.35rem;
-}
+        .content-note,
+        .product-status {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            margin-top: auto;
+            padding: 0.35rem 0.7rem;
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 999px;
+            color: #c084fc;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
 
-.card .btn {
-    margin-top: 0.8rem;
-}
+        .card .content-note {
+            margin-top: 0.35rem;
+        }
 
-.collaboration-card {
-    max-width: 520px;
-    min-height: 250px;
-}
+        .card .btn {
+            margin-top: 0.8rem;
+        }
 
-.collaboration-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    margin-bottom: 1rem;
-    border-radius: 16px;
-    background: rgba(168, 85, 247, 0.14);
-    color: #c084fc;
-    font-size: 1.6rem;
-}
+        .collaboration-card {
+            max-width: 520px;
+            min-height: 250px;
+        }
 
-.footer-note {
-    max-width: 900px;
-    margin: 0.7rem auto 0;
-    line-height: 1.5;
-    font-size: 0.8rem;
-}
+        .collaboration-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 1rem;
+            border-radius: 16px;
+            background: rgba(168, 85, 247, 0.14);
+            color: #c084fc;
+            font-size: 1.6rem;
+        }
 
-body.light-mode .content-note,
-body.light-mode .product-status {
-    color: #7c3aed;
-}
+        .footer-note {
+            max-width: 900px;
+            margin: 0.7rem auto 0;
+            line-height: 1.5;
+            font-size: 0.8rem;
+        }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
+        /* Performans: tema geçişlerinde gereksiz animasyonları kapat */
+        body.theme-switching *,
+        body.theme-switching *::before,
+        body.theme-switching *::after {
+            transition: none !important;
+        }
 
-/* Performance: animate only small controls, not every element on theme changes. */
-.theme-toggle-btn, .nav-links a, .btn, .contact-card {
-    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-}
-body.theme-switching *, body.theme-switching *::before, body.theme-switching *::after {
-    transition: none !important;
-}
-
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -596,7 +646,7 @@ body.theme-switching *, body.theme-switching *::before, body.theme-switching *::
         <div class="navbar-container">
             <div class="logo-area">
                 <div class="logo-circle" id="themeToggleLogo" role="button" tabindex="0" aria-label="Temayı değiştir" title="Temayı değiştir">
-                    <img src="foto.png" alt="logo" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22 viewBox=%220 0 50 50%22%3E%3Ccircle cx=%2225%22 cy=%2225%22 r=%2222%22 fill=%22%237c3aed%22 /%3E%3Ctext x=%2212%22 y=%2233%22 fill=%22white%22 font-size=%2220%22 font-weight=%22bold%22%3EA%3C/text%3E%3C/svg%3E'" />
+                    <img src="foto.png" alt="GıdaAvcısı logo" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22 viewBox=%220 0 50 50%22%3E%3Ccircle cx=%2225%22 cy=%2225%22 r=%2222%22 fill=%22%237c3aed%22 /%3E%3Ctext x=%2212%22 y=%2233%22 fill=%22white%22 font-size=%2220%22 font-weight=%22bold%22%3EA%3C/text%3E%3C/svg%3E'" />
                 </div>
                 <span class="brand-text">Gıda<span>Avcısı</span></span>
                 <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Aydınlık ve karanlık tema arasında geçiş yap" title="Temayı değiştir">
@@ -626,7 +676,7 @@ body.theme-switching *, body.theme-switching *::before, body.theme-switching *::
         </div>
     </section>
 
-    <!-- ===== HABERLER ===== -->
+    <!-- ===== GIDA REHBERİ ===== -->
     <section id="page-news" class="page">
         <div class="page-content">
             <h2 class="section-title">📰 Gıda Rehberi</h2>
@@ -650,7 +700,7 @@ body.theme-switching *, body.theme-switching *::before, body.theme-switching *::
         </div>
     </section>
 
-    <!-- ===== SPONSORLUKLAR ===== -->
+    <!-- ===== İŞ BİRLİKLERİ ===== -->
     <section id="page-sponsor" class="page">
         <div class="page-content">
             <h2 class="section-title">🤝 İş Birlikleri</h2>
@@ -662,23 +712,33 @@ body.theme-switching *, body.theme-switching *::before, body.theme-switching *::
         </div>
     </section>
 
-    <!-- ===== HAKKIMDA ===== -->
+    <!-- ===== HAKKIMDA (logo sağda) ===== -->
     <section id="page-about" class="page">
         <div class="page-content">
             <h2 class="section-title">👩‍🔬 Hakkımda</h2>
-            <div class="highlight-box" style="max-width:800px;">
-                <p style="font-size:1.2rem; line-height:1.8;">
-                    <i class="fas fa-graduation-cap" style="color:#a855f7; margin-right:10px;"></i>
-                    Merhaba, ben GıdaAvcısı.
-                    <br><br>
-                    Trabzon'da gıda alanında iki yıllık bir eğitim programını tamamladım.
-                    <br><br>
-                    Gıda konusunda öğrendiklerimi, öğrencilik sürecinde faydalı bulduğum bilgileri ve güvenilir kaynaklara dayanan içerikleri paylaşmak için GıdaAvcısı'nı hazırlıyorum.
-                    <br><br>
-                    Amacım, gıda alanında öğrenmek isteyen kişilerin bilgiyi daha anlaşılır şekilde takip edebilmesine katkı sağlamak.
-                    <br><br>
-                    <span style="color:#a855f7;">#GıdaAvcısı #BilgiPaylaşımı</span>
-                </p>
+            <div class="highlight-box" style="max-width:900px;">
+                <div class="about-wrapper">
+                    <div class="about-text">
+                        <p style="font-size:1.15rem; line-height:1.8;">
+                            <i class="fas fa-graduation-cap" style="color:#a855f7; margin-right:10px;"></i>
+                            Merhaba, ben GıdaAvcısı.
+                            <br><br>
+                            Trabzon'da gıda alanında iki yıllık bir eğitim programını tamamladım.
+                            <br><br>
+                            Gıda konusunda öğrendiklerimi, öğrencilik sürecinde faydalı bulduğum bilgileri ve güvenilir kaynaklara dayanan içerikleri paylaşmak için GıdaAvcısı'nı hazırlıyorum.
+                            <br><br>
+                            Amacım, gıda alanında öğrenmek isteyen kişilerin bilgiyi daha anlaşılır şekilde takip edebilmesine katkı sağlamak.
+                            <br><br>
+                            <span style="color:#a855f7;">#GıdaAvcısı #BilgiPaylaşımı</span>
+                        </p>
+                    </div>
+                    <div class="about-logo">
+                        <div class="logo-circle">
+                            <img src="foto.png" alt="GıdaAvcısı logosu" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22 viewBox=%220 0 160 160%22%3E%3Ccircle cx=%2280%22 cy=%2280%22 r=%2272%22 fill=%22%237c3aed%22 /%3E%3Ctext x=%2250%22 y=%22100%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EA%3C/text%3E%3C/svg%3E'" />
+                        </div>
+                        <span class="logo-label">GıdaAvcısı</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -703,262 +763,264 @@ body.theme-switching *, body.theme-switching *::before, body.theme-switching *::
         <span>© 2026 GıdaAvcısı · GıdaAvcısı</span>
         <p class="footer-note">Bu sitedeki içerikler genel bilgilendirme ve eğitim amaçlıdır; profesyonel gıda güvenliği veya sağlık danışmanlığının yerine geçmez. İçerikler kaynakları belirtilerek hazırlanmalıdır.</p>
     </footer>
+
     <script>
-/* GıdaAvcısı - site etkileşimleri ve içerikleri
-   İçeriklerdeki kaynaklar yayımlanmadan önce editör tarafından eklenmelidir. */
+        /* GıdaAvcısı - site etkileşimleri ve içerikleri
+           İçeriklerdeki kaynaklar yayımlanmadan önce editör tarafından eklenmelidir. */
 
-const INSTAGRAM_URL = 'https://www.instagram.com/gida.avcisi/';
+        const INSTAGRAM_URL = 'https://www.instagram.com/gida.avcisi/';
 
-const newsData = [
-    {
-        id: 1,
-        img: 'images/haber1.jpg',
-        title: 'Gıda etiketleri nasıl okunur?',
-        desc: 'İçindekiler listesi, alerjen bilgileri, saklama koşulları ve tarih etiketlerini incelerken nelere dikkat edilebileceğine dair temel bir rehber.',
-        link: ''
-    },
-    {
-        id: 2,
-        img: 'images/haber2.jpg',
-        title: 'Gıda güvenliğine giriş',
-        desc: 'Gıdaların hazırlanması ve saklanması sırasında hijyen, uygun sıcaklık ve çapraz bulaşma konularının neden önemli olduğunu öğrenin.',
-        link: ''
-    },
-    {
-        id: 3,
-        img: 'images/haber3.jpg',
-        title: 'Fermentasyon nedir?',
-        desc: 'Fermentasyonun temel mantığını, sık karşılaşılan fermente ürün örneklerini ve ürün etiketlerinde araştırılabilecek bilgileri keşfedin.',
-        link: ''
-    }
-];
+        const newsData = [
+            {
+                id: 1,
+                img: 'images/haber1.jpg',
+                title: 'Gıda etiketleri nasıl okunur?',
+                desc: 'İçindekiler listesi, alerjen bilgileri, saklama koşulları ve tarih etiketlerini incelerken nelere dikkat edilebileceğine dair temel bir rehber.',
+                link: ''
+            },
+            {
+                id: 2,
+                img: 'images/haber2.jpg',
+                title: 'Gıda güvenliğine giriş',
+                desc: 'Gıdaların hazırlanması ve saklanması sırasında hijyen, uygun sıcaklık ve çapraz bulaşma konularının neden önemli olduğunu öğrenin.',
+                link: ''
+            },
+            {
+                id: 3,
+                img: 'images/haber3.jpg',
+                title: 'Fermentasyon nedir?',
+                desc: 'Fermentasyonun temel mantığını, sık karşılaşılan fermente ürün örneklerini ve ürün etiketlerinde araştırılabilecek bilgileri keşfedin.',
+                link: ''
+            }
+        ];
 
-const coursesData = [
-    {
-        img: 'images/ders1.jpg',
-        title: 'Gıda Kimyası Çalışma Notları',
-        description: 'Öğrenciler için çalışma materyalleri hazırlanıyor. İçerik ve uygunluk bilgisi için Instagram üzerinden iletişime geçebilirsiniz.',
-        status: 'Hazırlanıyor',
-        insta: INSTAGRAM_URL
-    }
-];
+        const coursesData = [
+            {
+                img: 'images/ders1.jpg',
+                title: 'Gıda Kimyası Çalışma Notları',
+                description: 'Öğrenciler için çalışma materyalleri hazırlanıyor. İçerik ve uygunluk bilgisi için Instagram üzerinden iletişime geçebilirsiniz.',
+                status: 'Hazırlanıyor',
+                insta: INSTAGRAM_URL
+            }
+        ];
 
-const body = document.body;
-const themeIcon = document.getElementById('themeIcon');
-const themeToggleButton = document.getElementById('themeToggleBtn');
-const themeToggleLogo = document.getElementById('themeToggleLogo');
+        const body = document.body;
+        const themeIcon = document.getElementById('themeIcon');
+        const themeToggleButton = document.getElementById('themeToggleBtn');
+        const themeToggleLogo = document.getElementById('themeToggleLogo');
 
-function applyTheme(theme) {
-    const isLight = theme === 'light';
-    // Avoid animating/repainting every descendant during a theme change.
-    body.classList.add('theme-switching');
-    body.classList.toggle('light-mode', isLight);
+        function applyTheme(theme) {
+            const isLight = theme === 'light';
+            body.classList.add('theme-switching');
+            body.classList.toggle('light-mode', isLight);
 
-    if (themeIcon) {
-        themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-    }
+            if (themeIcon) {
+                themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+            }
 
-    try {
-        localStorage.setItem('gidaTheme', isLight ? 'light' : 'dark');
-    } catch (error) {
-        // localStorage kullanılamıyorsa tema bu sayfa boyunca değişmeye devam eder.
-    }
+            try {
+                localStorage.setItem('gidaTheme', isLight ? 'light' : 'dark');
+            } catch (error) {
+                // localStorage kullanılamıyorsa tema bu sayfa boyunca değişmeye devam eder.
+            }
 
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => body.classList.remove('theme-switching'));
-    });
-}
-
-function toggleTheme() {
-    applyTheme(body.classList.contains('light-mode') ? 'dark' : 'light');
-}
-
-themeToggleButton?.addEventListener('click', toggleTheme);
-themeToggleLogo?.addEventListener('click', toggleTheme);
-themeToggleLogo?.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleTheme();
-    }
-});
-
-try {
-    applyTheme(localStorage.getItem('gidaTheme') === 'light' ? 'light' : 'dark');
-} catch (error) {
-    applyTheme('dark');
-}
-
-const pages = {
-    home: document.getElementById('page-home'),
-    news: document.getElementById('page-news'),
-    courses: document.getElementById('page-courses'),
-    sponsor: document.getElementById('page-sponsor'),
-    about: document.getElementById('page-about'),
-    contact: document.getElementById('page-contact')
-};
-
-const navLinks = document.querySelectorAll('.nav-links a[data-page]');
-
-function switchPage(pageId) {
-    if (!pages[pageId]) return;
-
-    Object.entries(pages).forEach(([key, page]) => {
-        if (page) {
-            page.classList.toggle('active', key === pageId);
-            page.setAttribute('aria-hidden', key === pageId ? 'false' : 'true');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => body.classList.remove('theme-switching'));
+            });
         }
-    });
 
-    navLinks.forEach((link) => {
-        const isActive = link.dataset.page === pageId;
-        link.classList.toggle('active', isActive);
-        if (isActive) {
-            link.setAttribute('aria-current', 'page');
-        } else {
-            link.removeAttribute('aria-current');
+        function toggleTheme() {
+            applyTheme(body.classList.contains('light-mode') ? 'dark' : 'light');
         }
-    });
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+        themeToggleButton?.addEventListener('click', toggleTheme);
+        themeToggleLogo?.addEventListener('click', toggleTheme);
+        themeToggleLogo?.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleTheme();
+            }
+        });
 
-navLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-        event.preventDefault();
-        switchPage(link.dataset.page);
-    });
-});
+        try {
+            applyTheme(localStorage.getItem('gidaTheme') === 'light' ? 'light' : 'dark');
+        } catch (error) {
+            applyTheme('dark');
+        }
 
-function safeImageFallback(label, emoji = '📄') {
-    const safeLabel = String(label).replace(/[<>&"]/g, '');
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340"><rect width="600" height="340" fill="#2d2d42"/><text x="300" y="155" text-anchor="middle" font-size="54">${emoji}</text><text x="300" y="215" text-anchor="middle" fill="#eeeeff" font-family="Arial,sans-serif" font-size="22">${safeLabel}</text></svg>`;
-    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
+        const pages = {
+            home: document.getElementById('page-home'),
+            news: document.getElementById('page-news'),
+            courses: document.getElementById('page-courses'),
+            sponsor: document.getElementById('page-sponsor'),
+            about: document.getElementById('page-about'),
+            contact: document.getElementById('page-contact')
+        };
 
-function createImage(src, alt, emoji) {
-    const image = document.createElement('img');
-    image.src = src;
-    image.alt = alt;
-    image.loading = 'lazy';
-    image.addEventListener('error', () => {
-        image.src = safeImageFallback(alt, emoji);
-        image.onerror = null;
-    }, { once: true });
-    return image;
-}
+        const navLinks = document.querySelectorAll('.nav-links a[data-page]');
 
-function renderNewsInto(container, items) {
-    if (!container) return;
-    container.replaceChildren();
+        function switchPage(pageId) {
+            if (!pages[pageId]) return;
 
-    items.forEach((item) => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.dataset.newsId = String(item.id);
+            Object.entries(pages).forEach(([key, page]) => {
+                if (page) {
+                    page.classList.toggle('active', key === pageId);
+                    page.setAttribute('aria-hidden', key === pageId ? 'false' : 'true');
+                }
+            });
 
-        card.appendChild(createImage(item.img, item.title, '📰'));
+            navLinks.forEach((link) => {
+                const isActive = link.dataset.page === pageId;
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
 
-        const heading = document.createElement('h3');
-        heading.textContent = item.title;
-        card.appendChild(heading);
+            // Performans: smooth scroll'u sadece kullanıcı bunu istiyorsa kullan
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        }
 
-        const description = document.createElement('p');
-        description.textContent = item.desc;
-        card.appendChild(description);
+        navLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                switchPage(link.dataset.page);
+            });
+        });
 
-        const note = document.createElement('span');
-        note.className = 'content-note';
-        note.textContent = 'Bilgilendirici içerik';
-        card.appendChild(note);
+        function safeImageFallback(label, emoji = '📄') {
+            const safeLabel = String(label).replace(/[<>&"]/g, '');
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340"><rect width="600" height="340" fill="#2d2d42"/><text x="300" y="155" text-anchor="middle" font-size="54">${emoji}</text><text x="300" y="215" text-anchor="middle" fill="#eeeeff" font-family="Arial,sans-serif" font-size="22">${safeLabel}</text></svg>`;
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+        }
 
-        container.appendChild(card);
-    });
-}
+        function createImage(src, alt, emoji) {
+            const image = document.createElement('img');
+            image.src = src;
+            image.alt = alt;
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            image.addEventListener('error', () => {
+                image.src = safeImageFallback(alt, emoji);
+                image.onerror = null;
+            }, { once: true });
+            return image;
+        }
 
-function renderNews() {
-    renderNewsInto(document.getElementById('newsContainer'), newsData);
-}
+        function renderNewsInto(container, items) {
+            if (!container) return;
+            container.replaceChildren();
 
-function renderHomeNews() {
-    renderNewsInto(document.getElementById('homeNewsContainer'), newsData.slice(0, 2));
-}
+            items.forEach((item) => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.dataset.newsId = String(item.id);
 
-function renderCourses() {
-    const container = document.getElementById('coursesContainer');
-    if (!container) return;
+                card.appendChild(createImage(item.img, item.title, '📰'));
 
-    container.replaceChildren();
+                const heading = document.createElement('h3');
+                heading.textContent = item.title;
+                card.appendChild(heading);
 
-    coursesData.forEach((item) => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.appendChild(createImage(item.img, item.title, '📘'));
+                const description = document.createElement('p');
+                description.textContent = item.desc;
+                card.appendChild(description);
 
-        const heading = document.createElement('h3');
-        heading.textContent = item.title;
-        card.appendChild(heading);
+                const note = document.createElement('span');
+                note.className = 'content-note';
+                note.textContent = 'Bilgilendirici içerik';
+                card.appendChild(note);
 
-        const description = document.createElement('p');
-        description.textContent = item.description;
-        card.appendChild(description);
+                container.appendChild(card);
+            });
+        }
 
-        const status = document.createElement('span');
-        status.className = 'product-status';
-        status.textContent = item.status;
-        card.appendChild(status);
+        function renderNews() {
+            renderNewsInto(document.getElementById('newsContainer'), newsData);
+        }
 
-        const link = document.createElement('a');
-        link.href = item.insta;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.className = 'btn btn-primary';
-        link.innerHTML = '<i class="fab fa-instagram" aria-hidden="true"></i> Bilgi al';
-        card.appendChild(link);
+        function renderHomeNews() {
+            renderNewsInto(document.getElementById('homeNewsContainer'), newsData.slice(0, 2));
+        }
 
-        container.appendChild(card);
-    });
-}
+        function renderCourses() {
+            const container = document.getElementById('coursesContainer');
+            if (!container) return;
 
-function renderSponsor() {
-    const container = document.getElementById('sponsorContainer');
-    if (!container) return;
+            container.replaceChildren();
 
-    container.replaceChildren();
+            coursesData.forEach((item) => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.appendChild(createImage(item.img, item.title, '📘'));
 
-    const card = document.createElement('article');
-    card.className = 'sponsor-card collaboration-card';
+                const heading = document.createElement('h3');
+                heading.textContent = item.title;
+                card.appendChild(heading);
 
-    const icon = document.createElement('div');
-    icon.className = 'collaboration-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.innerHTML = '<i class="fas fa-handshake"></i>';
-    card.appendChild(icon);
+                const description = document.createElement('p');
+                description.textContent = item.description;
+                card.appendChild(description);
 
-    const heading = document.createElement('h3');
-    heading.textContent = 'İş birliği öneriniz mi var?';
-    card.appendChild(heading);
+                const status = document.createElement('span');
+                status.className = 'product-status';
+                status.textContent = item.status;
+                card.appendChild(status);
 
-    const description = document.createElement('p');
-    description.textContent = 'Gıda alanındaki markalar, üreticiler ve içerik üreticileri iş birliği önerilerini Instagram üzerinden iletebilir.';
-    card.appendChild(description);
+                const link = document.createElement('a');
+                link.href = item.insta;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'btn btn-primary';
+                link.innerHTML = '<i class="fab fa-instagram" aria-hidden="true"></i> Bilgi al';
+                card.appendChild(link);
 
-    const link = document.createElement('a');
-    link.href = INSTAGRAM_URL;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.className = 'btn btn-outline';
-    link.innerHTML = '<i class="fab fa-instagram" aria-hidden="true"></i> İletişime geç';
-    card.appendChild(link);
+                container.appendChild(card);
+            });
+        }
 
-    container.appendChild(card);
-}
+        function renderSponsor() {
+            const container = document.getElementById('sponsorContainer');
+            if (!container) return;
 
-renderNews();
-renderHomeNews();
-renderCourses();
-renderSponsor();
-switchPage('home');
+            container.replaceChildren();
 
+            const card = document.createElement('article');
+            card.className = 'sponsor-card collaboration-card';
+
+            const icon = document.createElement('div');
+            icon.className = 'collaboration-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.innerHTML = '<i class="fas fa-handshake"></i>';
+            card.appendChild(icon);
+
+            const heading = document.createElement('h3');
+            heading.textContent = 'İş birliği öneriniz mi var?';
+            card.appendChild(heading);
+
+            const description = document.createElement('p');
+            description.textContent = 'Gıda alanındaki markalar, üreticiler ve içerik üreticileri iş birliği önerilerini Instagram üzerinden iletebilir.';
+            card.appendChild(description);
+
+            const link = document.createElement('a');
+            link.href = INSTAGRAM_URL;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'btn btn-outline';
+            link.innerHTML = '<i class="fab fa-instagram" aria-hidden="true"></i> İletişime geç';
+            card.appendChild(link);
+
+            container.appendChild(card);
+        }
+
+        renderNews();
+        renderHomeNews();
+        renderCourses();
+        renderSponsor();
+        switchPage('home');
     </script>
 
 </body>
